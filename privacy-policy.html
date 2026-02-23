@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VerseFlow — Privacy Policy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0e17;
+      --surface: #1a1928;
+      --border: rgba(255,255,255,0.07);
+      --text: #fffffe;
+      --muted: rgba(255,255,255,0.5);
+      --dim: rgba(255,255,255,0.2);
+      --primary: #6C63FF;
+      --gold: #F59E0B;
+      --green: #10b981;
+      --red: #ef4444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Background orbs */
+    .bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.08;
+    }
+    .orb1 { width: 500px; height: 500px; background: #6C63FF; top: -150px; left: -100px; }
+    .orb2 { width: 350px; height: 350px; background: #F59E0B; bottom: -80px; right: -80px; }
+
+    /* Layout */
+    .page {
+      position: relative; z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-bottom: 32px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 24px;
+    }
+
+    .updated-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px;
+      background: rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--primary);
+    }
+    .updated-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* TL;DR card */
+    .tldr {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .tldr::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--primary), #a78bfa, var(--gold));
+    }
+    .tldr-title {
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 16px;
+    }
+    .tldr-points {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .tldr-point {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--text);
+    }
+    .tldr-icon {
+      font-size: 18px; flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-num {
+      width: 28px; height: 28px;
+      background: rgba(108,99,255,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 600;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .section p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section p strong { color: var(--text); font-weight: 500; }
+
+    /* Info box */
+    .info-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-top: 16px;
+    }
+    .info-box.green { border-color: rgba(16,185,129,0.25); background: rgba(16,185,129,0.05); }
+    .info-box.gold  { border-color: rgba(245,158,11,0.25);  background: rgba(245,158,11,0.05); }
+    .info-box.blue  { border-color: rgba(108,99,255,0.25);  background: rgba(108,99,255,0.05); }
+    .info-box p { margin: 0; font-size: 14px; }
+    .info-box p + p { margin-top: 8px; }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    .data-table th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 12px 16px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table td:first-child { color: var(--text); font-weight: 500; }
+    .local-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(16,185,129,0.15);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+    }
+    .stripe-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(108,99,255,0.15);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Contact card */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .contact-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .contact-card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .contact-email {
+      display: inline-block;
+      padding: 10px 24px;
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 100px;
+      color: var(--primary);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .contact-email:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--dim);
+    }
+    .footer a { color: var(--primary); text-decoration: none; }
+
+    /* Divider */
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+  </style>
+</head>
+<body>
+  <div class="bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+  </div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">📖</div>
+        <span class="logo-name">VerseFlow</span>
+      </div>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="page-subtitle">
+        We built VerseFlow to bring Scripture into your day — not to collect your data.
+        Here's exactly what we do and don't do.
+      </p>
+      <div class="updated-badge">
+        <div class="updated-dot"></div>
+        Last updated: June 2025
+      </div>
+    </header>
+
+    <!-- TL;DR -->
+    <div class="tldr">
+      <div class="tldr-title">TL;DR — The Short Version</div>
+      <div class="tldr-points">
+        <div class="tldr-point">
+          <span class="tldr-icon">🔒</span>
+          <span><strong>We collect nothing.</strong> VerseFlow does not collect, store, or transmit any personal data to any server.</span>
+        </div>
+        <div class="tldr-point">
+          <span class="tldr-icon">💾</span>
+          <span><strong>Everything stays on your device.</strong> Your settings, saved verses, and journal entries live in Chrome's local storage only.</span>
+        </div>
+        <div class="tldr-point">
+          <span class="tldr-icon">🌐</span>
+          <span><strong>No tracking, no analytics, no ads.</strong> We have zero third-party trackers or advertising SDKs.</span>
+        </div>
+        <div class="tldr-point">
+          <span class="tldr-icon">💳</span>
+          <span><strong>Stripe handles payments.</strong> When you upgrade, you go to Stripe's secure page. We never see your card details.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2 class="section-title">What Information We Collect</h2>
+      </div>
+      <p><strong>We collect no personal information whatsoever.</strong> VerseFlow is an offline-first Chrome extension. There is no VerseFlow server, no database, and no account system.</p>
+      <p>The extension stores the following data <strong>locally on your device</strong> using Chrome's built-in <code>chrome.storage.sync</code> API:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Why it's stored</th>
+            <th>Where</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Theme preference</td>
+            <td>Remember your chosen verse theme (Comfort, Wisdom, etc.)</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Translation preference</td>
+            <td>Remember NIV / ESV / KJV selection</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Dark / light mode</td>
+            <td>Remember your display preference</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Streak counter</td>
+            <td>Track your consecutive daily Scripture habit</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Saved ("This hit me") verses</td>
+            <td>Keep your favourite verses accessible</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Journal entries (Pro)</td>
+            <td>Save your reflections on each verse</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Pro status flag</td>
+            <td>Remember whether you've upgraded to Pro</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Scripture Circle ID (Pro)</td>
+            <td>Your shareable group ID for Scripture Circle</td>
+            <td><span class="local-badge">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Payment (Stripe)</td>
+            <td>Processed entirely by Stripe — we never receive card details</td>
+            <td><span class="stripe-badge">Stripe only</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="info-box green" style="margin-top: 16px;">
+        <p>✅ <strong>None of this data ever leaves your device.</strong> Chrome's storage.sync API syncs data across your own Chrome profile — it does not send data to VerseFlow's servers because VerseFlow has no servers.</p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2 class="section-title">Permissions We Use & Why</h2>
+      </div>
+      <p>Chrome extensions must declare all permissions upfront. Here's exactly why VerseFlow needs each one:</p>
+
+      <div class="info-box blue">
+        <p><strong>storage</strong> — Saves your preferences, saved verses, journal entries, and streak count locally on your device. Nothing is uploaded.</p>
+      </div>
+      <div class="info-box blue" style="margin-top: 10px;">
+        <p><strong>alarms</strong> — Sets a daily timer to refresh the anchor verse. Used entirely within your browser with no external communication.</p>
+      </div>
+      <div class="info-box blue" style="margin-top: 10px;">
+        <p><strong>activeTab</strong> — Enables the Bible reference hover feature. When you hover over a Bible reference like "John 3:16" on any webpage, VerseFlow shows a tooltip with the verse. No page content is read or recorded.</p>
+      </div>
+      <div class="info-box blue" style="margin-top: 10px;">
+        <p><strong>host_permissions (&lt;all_urls&gt;)</strong> — Required for the Bible reference detection content script to run on any webpage. VerseFlow only scans visible text for Bible references (e.g. "Romans 8:28") to show hover tooltips. It does not read, record, or transmit any other page content.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2 class="section-title">Payments & Stripe</h2>
+      </div>
+      <p>VerseFlow Pro is a one-time $19.99 lifetime purchase processed by <strong>Stripe</strong>, a trusted payment processor used by millions of businesses worldwide.</p>
+      <p>When you click "Go Pro," you are redirected to Stripe's secure checkout page at <strong>buy.stripe.com</strong>. All payment processing, card handling, and receipt emails are managed entirely by Stripe.</p>
+
+      <div class="info-box gold">
+        <p>💳 <strong>VerseFlow never sees, stores, or has access to your payment card details, billing address, or any financial information.</strong></p>
+        <p>Stripe's privacy policy is available at <a href="https://stripe.com/privacy" target="_blank" rel="noopener" style="color: var(--gold);">stripe.com/privacy</a>.</p>
+      </div>
+
+      <p style="margin-top: 16px;">After payment, Pro status is activated manually in the extension by clicking "Already paid? Click here to activate." This confirmation is stored as a simple flag in your local Chrome storage only.</p>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2 class="section-title">Third-Party Services</h2>
+      </div>
+      <p>VerseFlow uses <strong>zero third-party analytics, advertising, or tracking services.</strong> There are no SDKs from Google Analytics, Facebook, Mixpanel, or any similar service embedded in VerseFlow.</p>
+      <p>The only external service VerseFlow interacts with is <strong>Stripe</strong> — and only when you choose to upgrade, by navigating to Stripe's own website.</p>
+      <p>All 100+ Bible verses are bundled directly inside the extension. VerseFlow makes <strong>no external API calls</strong> to fetch verse data, meaning it works fully offline.</p>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2 class="section-title">Children's Privacy</h2>
+      </div>
+      <p>VerseFlow does not knowingly collect any information from anyone, including children under the age of 13. Since we collect no personal data at all, VerseFlow is safe for all ages.</p>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <h2 class="section-title">Your Data & Deletion</h2>
+      </div>
+      <p>Since all data is stored locally on your device, <strong>you have complete control</strong> over it at all times.</p>
+      <p>To delete all VerseFlow data:</p>
+      <div class="info-box">
+        <p>1. Go to <strong>chrome://extensions/</strong></p>
+        <p>2. Find VerseFlow and click <strong>Remove</strong></p>
+        <p>3. All local data is permanently deleted with the extension</p>
+      </div>
+      <p style="margin-top: 12px;">Alternatively, use the "Clear all saved verses" button in the Saved tab of the popup to delete your favourites, or simply delete journal entries directly in the extension.</p>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <h2 class="section-title">Changes to This Policy</h2>
+      </div>
+      <p>If we ever update this privacy policy, we will update the "Last updated" date at the top of this page. We will only add features that require new data handling if we update this policy first and notify users via the extension.</p>
+      <p>Given VerseFlow's offline-first design, we do not anticipate significant changes to our data practices.</p>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <h2 class="section-title">Governing Law</h2>
+      </div>
+      <p>This privacy policy is governed by applicable law. VerseFlow is an independent extension and is not affiliated with Google, Stripe, or any Bible translation organisation.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <h3>Questions? We'd love to hear from you.</h3>
+      <p>If you have any questions about this privacy policy or how VerseFlow handles data, reach out anytime.</p>
+      <a href="mailto:hello@verseflow.app" class="contact-email">✉️  hello@verseflow.app</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>© 2025 VerseFlow · <a href="#">Privacy Policy</a> · Built with ✝️ and code</p>
+      <p style="margin-top: 8px;">"Be transformed by the renewing of your mind." — Romans 12:2</p>
+    </div>
+
+  </div>
+</body>
+</html>
